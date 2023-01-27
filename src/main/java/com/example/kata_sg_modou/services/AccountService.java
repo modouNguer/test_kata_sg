@@ -10,6 +10,7 @@ import org.springframework.stereotype.Service;
 
 import com.example.kata_sg_modou.entities.Account;
 import com.example.kata_sg_modou.entities.Card;
+import com.example.kata_sg_modou.entities.OperationType;
 import com.example.kata_sg_modou.entities.User;
 import com.example.kata_sg_modou.repositories.AccountRepository;
 import com.example.kata_sg_modou.repositories.CardRepository;
@@ -49,7 +50,12 @@ public class AccountService implements AccountServiceImpl,UserServiceImpl{
   public void updateBalance(long accountId, double balance) {
     var userAccount = accountOperation.findById(accountId);
     if(userAccount.isPresent()){
-      accountOperation.save(new Account(accountId,balance,"Retrait"));
+      Account account = new Account();
+      account.setAccountNumber(accountId);
+      account.setBalance(balance);
+      account.setOpertationType(OperationType.SAVEMONEY.name());
+
+      accountOperation.save(account);
 
     }
 

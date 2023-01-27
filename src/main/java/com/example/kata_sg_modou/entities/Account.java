@@ -66,4 +66,11 @@ public class Account {
     this.balance = balance;
   }
 
+  public String getOpertationType() {
+    return opertationType;
+  }
+
+  public void setOpertationType(String opertationType) {
+    this.opertationType = opertationType;
+  }
 }
